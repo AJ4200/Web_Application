@@ -1,0 +1,108 @@
+﻿@model EpsilonDemoWebsite.Models.Staff
+
+@{
+    ViewData["Title"] = "addStaff";
+     Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+ <div class="card">
+     <div class="card-body">
+        <p class="card-description">
+                   
+                  </p>
+                  <div>
+                  <section>
+                    @using (Html.BeginForm("Edit","staff"))
+                    {             
+                   
+
+                 
+                    <div class="form-group">
+                    <label for="exampleSelectGender">Staff Type</label>
+                    @if(Model.Dtype == "Driver"){
+                        <select class="form-control"id="dtype" name="dtype" onchange="updatepage('Driver')" value="@Model.Dtype"readonly>
+                          <option>Driver</option>
+                          
+                        </select>
+                        
+                     }
+                     @if(Model.Dtype == "Supervisor"){
+                        <select class="form-control"id="dtype" name="dtype" onchange="updatepage('Supervisor')" value="@Model.Dtype"readonly>
+                          
+                          <option>Supervisor</option>
+                          
+                        </select>
+                     }
+                     @if(Model.Dtype == "Admin"){
+                        <select class="form-control"id="dtype" name="dtype" onchange="updatepage('Admin')" value="@Model.Dtype"readonly>
+                          
+                           <option>Admin</option>
+                        </select>
+                     }
+                      </div>
+                    
+                    <div class="form-group" hidden>
+                      <label for="exampleInputEmail3">ID</label>
+                      <input type="text" class="form-control" name="staffid" placeholder="ID" value="@Model.StaffId"readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">ID Number</label>
+                      <input type="text" class="form-control" name="idnumber" placeholder="ID Number"value="@Model.IdNumber">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Name" value="@Model.Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Surname</label>
+                      <input type="text" class="form-control" name="surname" placeholder="Surname" value="@Model.Surname">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Email</label>
+                      <input type="text" class="form-control" name="email" placeholder="Email" value="@Model.Email">
+                    </div>
+                    
+                    <div class="form-group" hidden>
+                      <label for="exampleInputPassword4">Password</label>
+                      <input type="password" class="form-control" name="password" placeholder="Password" value="@Model.Password"readonly>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Telephone</label>
+                      <input type="text" class="form-control" name="telephone" placeholder="1234567890" value="@Model.Telephone">
+                    </div>
+                        @if (Model.Dtype == "Driver")
+                        {
+                            <div id="ln" class="form-group">
+                                <label for="exampleInputPassword4">Licence Number</label>
+                                <input type="text" class="form-control"  name="licenceNumber" value="@Model.LicenceNumber">
+                            </div>
+                        }
+                        <div class="form-group">
+                     
+                      </div>
+                        <button type="submit" class="btn btn-primary me-2" asp-action="Edit">Submit</button>
+                        @if (Model.Dtype == "Driver")
+                        {
+                              @Html.ActionLink("Back to Drivers", "Index", "Staff", new { id= "DR" }, new { @class="btn btn-light"} )
+                        }
+                        @if (Model.Dtype == "Supervisor")
+                        {
+                           @Html.ActionLink("Back to Supervisor", "Index", "Staff", new { id= "SU" }, new { @class="btn btn-light"} )
+                        }
+                       
+                         @if (Model.Dtype == "Admin")
+                        {
+                            @Html.ActionLink("Back to Admin", "Index", "Staff", new { id= "AD" }, new { @class="btn btn-light"} )
+                        }
+                  
+                  }
+                  </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            

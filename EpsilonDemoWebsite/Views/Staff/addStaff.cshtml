@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "addStaff";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <p class="card-description">
+                   
+                  </p>
+                  <div>
+                  <section>
+                    @using (Html.BeginForm("addStaff","Staff",FormMethod.Post))
+                            {
+
+                  <form class="forms-sample">
+                    <div class="form-group">
+                     
+                    
+                    <label for="exampleSelectGender">Staff Type</label>
+                        <select class="form-control"id="dtype" name="dtype" onchange="updatepage(this.options[this.selectedIndex].value)">
+                          <option>Driver</option>
+                          <option>Supervisor</option>
+                           <option>Admin</option>
+                        </select>
+                      </div>
+                    
+                   
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">ID Number</label>
+                      <input type="text" class="form-control" name="idnumber" placeholder="ID Number">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Surname</label>
+                      <input type="text" class="form-control" name="surname" placeholder="Surname">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Email</label>
+                      <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Password</label>
+                      <input type="text" class="form-control" name="password" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Telephone</label>
+                      <input type="text" class="form-control" name="telephone" placeholder="1234567890">
+                    </div>
+                    <div id="ln" class="form-group">
+                      <label for="exampleInputPassword4">Licence Number</label>
+                      <input type="text" class="form-control"  name="licenceNumber" placeholder="Licence Number">
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2"asp-controller="Staff" asp-action="addstaff">Submit</button>
+                   <button type="submit" class="btn btn-light" asp-controller="Home" asp-action="Index">Cancel</button>
+                  </form>
+                  
+                  }
+                  </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+           
+            function updatepage(value){
+                if(value == "Admin"){
+                   document.getElementById("ln").style.display = "none";
+                }
+                if(value == "Supervisor"){
+                    document.getElementById("ln").style.display = "none";
+                }
+            }
+
+
+
+            function redirectBack() {
+
+        window.location.href = "Dashboard";
+    }
+
+            </script>

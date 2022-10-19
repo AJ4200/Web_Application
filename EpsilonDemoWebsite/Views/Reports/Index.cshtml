@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+}
+   
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            var data = {
+    	            labels: @Html.Raw(Json.Serialize(ViewBag.landfillNames)),
+    		        datasets:  [{
+                        label: 'Capacity',
+                        data: @Html.Raw(Json.Serialize(ViewBag.landfillCaps))
+                    }]
+    	    };
+            var options = {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                        beginAtZero: true
+                        }
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                }
+            };
+     
+            if ($("#barChart").length) {
+                var barChartCanvas = $("#barChart").get(0).getContext("2d");
+                // This will get the first returned node in the jQuery collection.
+                var barChart = new Chart(barChartCanvas, {
+                    type: 'bar',
+                    data: data,
+                    options: options
+                });
+            }
+            chart.render();
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bar chart</h4>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+  <script src="../../wwwroot/wwwroot/vendors/chart.js/Chart.min.js"></script>
+</body>                           

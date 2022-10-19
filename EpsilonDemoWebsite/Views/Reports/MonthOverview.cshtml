@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Month Overview Report";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+}
+
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            var dataLoads = {
+    	            labels:  ['Landfill', 'Recycling'],
+    		        datasets:  [{
+                        data: @Html.Raw(ViewBag.Loads),
+                     backgroundColor: [
+                    'rgb(0,0,255,0.4)',
+                    'rgb(0,255,255,0.4)'
+                    ],
+                    hoverOffset: 4
+                    
+                    }]
+    	    };
+            
+            var dataTonnages = {
+    	            labels: ['Landfill', 'Recycling'],
+    		         datasets:  [{
+                        data: @Html.Raw(ViewBag.Tonnages),
+                     backgroundColor: [
+                    'rgb(0,0,255,0.4)',
+                    'rgb(0,255,255,0.4)'
+                    ],
+                    hoverOffset: 4
+                    
+                    }]
+    	    };
+            
+
+            if ($("#LoadsChart").length) {
+                var LoadsChartCanvas = $("#LoadsChart").get(0).getContext("2d");
+                // This will get the first returned node in the jQuery collection.
+                var LoadsChart = new Chart(LoadsChartCanvas, {
+                    type: 'pie',
+                    data: dataLoads,
+                });
+            }
+            if ($("#TonnagesChart").length) {
+                var TonnagesChartCanvas = $("#TonnagesChart").get(0).getContext("2d");
+                // This will get the first returned node in the jQuery collection.
+                var TonnagesChart = new Chart(TonnagesChartCanvas, {
+                    type: 'pie',
+                    data: dataTonnages,
+
+                });
+            }
+            
+            chart.render();
+         }
+    </script>
+</head>
+<body>
+    <div class="row">
+   <div class="col-lg-6 mb-4">
+                <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Loads this Month</h4>
+                   <div ><canvas height="220" id="LoadsChart"></canvas>   
+                   </div>
+                </div>
+            </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+                <div class="card">
+                <div class="card-body">
+                     <h4 class="card-title">Tonnages this Month</h4>
+                   <div ><canvas height="220" id="TonnagesChart"></canvas>
+                   </div>
+                </div>       
+            </div>
+        </div>
+        </div>
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+                <div class="card-body">
+                    
+                          <i class="ti-alert btn-icon-prepend"></i>                                                    
+                          Number Of Breakdowns  @Html.Raw(ViewBag.breakdowns)
+                       
+                </div>
+
+        </div>
+    </div>
+  <script src="../../wwwroot/wwwroot/vendors/chart.js/Chart.min.js"></script>
+</body>

@@ -1,0 +1,116 @@
+﻿@model EpsilonDemoWebsite.Models.StartEndDates
+@{
+    ViewData["Title"] = "Garden Sites Traffic Report";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+}
+
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            var data = {
+    	            labels: @Html.Raw(ViewBag.aerasList),
+    		        datasets:  [{
+                        data: @Html.Raw(ViewBag.requestsList),
+                         backgroundColor: 'rgb(0,0,255,0.4)',
+                    }]
+    	    };
+            var options = {
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                        display: true,
+                        labelString: 'Num Requests'
+                        }
+                    }],
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                        display: true,
+                        labelString: 'Months'
+                        }
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                }
+            };
+     
+            if ($("#barChart").length) {
+                var barChartCanvas = $("#barChart").get(0).getContext("2d");
+                // This will get the first returned node in the jQuery collection.
+                var barChart = new Chart(barChartCanvas, {
+                    type: 'bar',
+                    data: data,
+                    options: options
+                });
+            }
+            chart.render();
+        }
+        
+    </script>
+    
+    
+    
+</head>
+<body>
+     <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">GardenSite Traffic</h4>
+                     <div class="col-lg-12 grid-margin stretch-card">
+                         
+               
+                            <canvas height="125" id="barChart"></canvas>
+                     </div>
+            </div>
+            
+        </div>
+    </div>
+    <section>
+     @using (Html.BeginForm("GardenSiteTraffic","Reports"))
+     { 
+    <div class="row">
+     <div class="col-lg-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Start Date</h4>
+                        <div class="form-group">
+                        
+                        <input type="date" name="startdate"  value="@Model.startDate" class="form-control" />
+                        
+                    </div>
+                        
+                        </div>
+                    </div>
+   </div>
+   
+   <div class="col-lg-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">End Date</h4>
+                         <input type="date" name="enddate" value="@Model.endDate" class="form-control" />
+                        
+                        </div>
+                    </div>
+   </div>
+            <div class="col-lg-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Update</h4>
+                       <button type="submit" class="btn btn-primary me-2" asp-action="GardenSiteTraffic">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+   }
+   </section>
+    <script src="../../wwwroot/wwwroot/vendors/chart.js/Chart.min.js"></script>
+    
+
+</body>

@@ -1,0 +1,55 @@
+﻿@model EpsilonDemoWebsite.Models.Truck
+
+@{
+    ViewData["Title"] = "Add Truck";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+                 @using (Html.BeginForm("addtruck","Truck", FormMethod.Post))
+                {
+                    
+                    
+                      
+                            
+                       
+                    
+                    <div class="form-group">
+                        <label asp-for="NumberPlate" class="control-label"></label>
+                        <input name="NumberPlate" class="form-control" />
+                        <span asp-validation-for="NumberPlate" class="text-danger"></span>
+                    </div>
+                    
+                   <div class="form-group">
+                        <label for="binID">Bin</label>
+                        
+                        <select type="text" name="bins">
+                                @foreach (var item in ViewData["Bins"] as List<string>) {
+                                <option>
+                                    @item
+                                </option>
+                                }
+                            </select>
+                    </div>
+                    <div class="form-group">
+                            <label for="driverID">Driver</label>
+                        
+                            <select type="text" name="drivers">
+                                @foreach (var item in ViewData["Drivers"] as List<string>) {
+                                <option>
+                                    @item
+                                </option>
+                                }
+                            </select>
+                    </div> 
+                    <input type="submit" value="Submit" class="btn btn-primary me-2" />
+                    <a href='@Url.Action("Index", "Truck")'>
+                        <input type='button' value='Cancel' class="btn btn-light">
+                    </a>
+                }
+            </section>
+        </div>
+    </div>
+</div>

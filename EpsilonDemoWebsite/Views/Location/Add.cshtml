@@ -1,0 +1,97 @@
+﻿@model EpsilonDemoWebsite.Models.Location
+
+@{
+    var locType = ViewContext.RouteData.Values["id"];
+    @switch (locType)
+    {
+        case "GS":
+            ViewData["Title"] = "Add Garden Site";
+            break;
+        case "LF":
+            ViewData["Title"] = "Add Landfill";
+            break;
+        case "CS":
+            ViewData["Title"] = "Add Control Station";
+            break;
+        default:
+            break;
+    }
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+                @using (Html.BeginForm("Add","Location", new { id=locType }, FormMethod.Post))
+                {
+
+                    <div class="form-group">
+                        <label for="type">Location Type</label>
+                        @switch (locType)
+                    {
+                        case "GS":
+                            <input type="text" class="form-control" name="dtype" placeholder="Location Type" value="Garden Site" readonly>
+                            break;
+                        case "LF":
+                             <input type="text" class="form-control" name="dtype" placeholder="Location Type" value="Landfill" readonly>
+                            break;
+                        case "CS":
+                            <input type="text" class="form-control" name="dtype" placeholder="Location Type" value="Control Station" readonly>
+                            break;
+                        default:
+                            break;
+
+                    }
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Logitude" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" readonly>
+                    </div>
+                    @if(locType.Equals("GS"))
+                    {
+                        <div class="form-group">
+                            <label for="supervisorID">Supervisor</label>
+                        
+                            <select type="text" class="form-control" name="supervisor">
+                                @foreach (var item in ViewData["Supervisors"] as List<string>) {
+                                <option>
+                                    @item
+                                </option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    
+                    <button type="submit" class="btn btn-primary me-2" asp-action="Add" >Submit</button>
+                   <button type="submit" class="btn btn-light" asp-controller="Home" asp-action="Index">Cancel</button>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false&libraries=places&key=AIzaSyDh1ZmyVfyDT4pbTk5nbSJLykebE50v4Bc" type="text/javascript"></script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', function () {
+
+        var options = { 
+            componentRestrictions: { country: "za" }
+        };
+        var places = new google.maps.places.Autocomplete(document.getElementById('address'), options);
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var address = place.formatted_address;
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+        });
+    });
+</script>

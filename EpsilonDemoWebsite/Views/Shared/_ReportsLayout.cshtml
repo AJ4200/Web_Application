@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Phi Collection</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EpsilonAdminWebsite.styles.css" asp-append-version="true" />
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../wwwroot/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../wwwroot/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../wwwroot/images/phi_logo.png" />
+</head>
+<body>
+    <div class=" container-scroller">
+        <partial name="~/Views/Shared/_Navbar.cshtml" />
+        <div class="container-fluid page-body-wrapper">
+            <partial name="~/Views/Shared/_Sidebar.cshtml" />
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <partial name="~/Views/Shared/_Footer.cshtml" />
+    </div>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../wwwroot/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../../wwwroot/vendors/chart.js/Chart.min.js"></script>@*
+    <script src="../../wwwroot/js/chart.js"></script>*@
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../wwwroot/js/off-canvas.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->@*
+    <script src="../../wwwroot/js/chart.js"></script>*@
+    <!-- End custom js for this page-->
+</body>

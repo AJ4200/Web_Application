@@ -1,0 +1,54 @@
+﻿@model EpsilonDemoWebsite.Models.Bin
+
+@{
+    ViewData["Title"] = "Bin";
+     Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+ <div class="card">
+     <div class="card-body">
+        <p class="card-description">
+                   
+                  </p>
+                  <div>
+                  <section>
+                    @using (Html.BeginForm("Edit","Bin")){
+
+                 
+                    
+                    
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">binId</label>
+                      <input type="text" class="form-control" name="binId" placeholder="binId" value="@Model.BinId"readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Qrcode</label>
+                      <input type="text" class="form-control" name="Qrcode" placeholder="Qrcode"value="@Model.Qrcode"readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Waste</label>
+                      <input type="text" class="form-control" name="Waste" placeholder="Waste" value="@Model.Waste">
+                    </div>
+                     <div class="form-group">
+                     
+                    
+                    <label for="exampleSelectGender">Active</label>
+                        <select  name="Active" >
+                          <option>true</option>
+                          <option>false</option>
+                           
+                        </select>
+                      </div>
+                    <button type="submit" class="btn btn-primary me-2" asp-action="Edit">Submit</button>
+                   <button type="submit" class="btn btn-light" asp-controller="Bins" asp-action="Index">Cancel</button>
+                 
+                  
+                  }
+                  </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            

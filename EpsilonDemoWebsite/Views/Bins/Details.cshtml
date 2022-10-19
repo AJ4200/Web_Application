@@ -1,0 +1,18 @@
+﻿@model EpsilonDemoWebsite.Models.Bin
+@using System.Text
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+@{  
+    var base64 = Convert.ToBase64String(Model.Qrcode);
+    var imgSrc = String.Format("data:image/svg+xml;base64,{0}", base64);
+}
+<div>
+    <a href='@Url.Action("Index", "Bins")'>
+        <input type='button' value='Back' class="btn btn-light">
+    </a>
+</div>
+
+<div><img src="@imgSrc" height=400/></div>

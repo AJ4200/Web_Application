@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Phi Collection</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EpsilonAdminWebsite.styles.css" asp-append-version="true" />
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../wwwroot/vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../wwwroot/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="../../wwwroot/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../wwwroot/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../wwwroot/images/phi_logo.png" />
+
+</head>
+<body>
+    <div class="container-scroller">
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

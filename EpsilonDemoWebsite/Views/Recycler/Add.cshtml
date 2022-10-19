@@ -1,0 +1,96 @@
+﻿@model EpsilonDemoWebsite.Models.Location
+
+@{
+    var locType = "Recycler";
+    
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+                @using (Html.BeginForm("Add","Recycler", FormMethod.Post))
+                {
+
+                    <div class="form-group">
+                        <label for="type">Location Type</label>
+                        <input type="text" class="form-control" name="dtype" placeholder="Recycler" value="Recycler" readonly>
+                          
+                    </div>
+                     <div class="form-group">
+                        <label for="ID">Name</label>
+                        <input type="text" class="form-control" name="Name" placeholder="Company Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Logitude" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" readonly>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="address">
+                        <input type="checkbox"  name="IndustrialWaste">
+                        Industrial Waste</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="longitude">
+                        <input type="checkbox"  name="CardboardandPaper" >
+                        Cardboard and Paper</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="latitude">
+                        <input type="checkbox"  name="Plastic">
+                        Plastic</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="latitude">
+                        <input type="checkbox"  name="Glass" >
+                        Glass</label>
+                    </div>
+                   <div class="col-lg-3">
+                        <label for="latitude">
+                        <input type="checkbox"  name="GardenWaste">
+                        Garden Waste</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="latitude">
+                        <input type="checkbox"  name="GeneralWaste" >
+                        General Waste</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary me-2" asp-action="Add" >Submit</button>
+                        <a href='@Url.Action("Index", "Recycler")'>
+                            <input type='button' value='Cancel' class="btn btn-light">
+                        </a>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false&libraries=places&key=AIzaSyDh1ZmyVfyDT4pbTk5nbSJLykebE50v4Bc" type="text/javascript"></script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', function () {
+
+        var options = { 
+            componentRestrictions: { country: "za" }
+        };
+        var places = new google.maps.places.Autocomplete(document.getElementById('address'), options);
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var address = place.formatted_address;
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+        });
+    });
+</script>
+

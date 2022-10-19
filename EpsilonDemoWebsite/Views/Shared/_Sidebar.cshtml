@@ -1,0 +1,82 @@
+﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Home">
+                <i class="mdi mdi-view-dashboard menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <!-- Management-->
+        <li class="nav-item nav-category">Management</li>
+        <!-- Staff-->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#staff" aria-expanded="false" aria-controls="staff">
+                <i class="menu-icon mdi mdi-account"></i>
+                <span class="menu-title">Staff</span>
+                <i class="menu-arrow"></i> 
+            </a>
+            <div class="collapse" id="staff">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> @Html.ActionLink("Admins", "Index", "Staff", new { id= "AD" }, new { @class="nav-link"} )</li>
+                    <li class="nav-item"> @Html.ActionLink("Drivers", "Index", "Staff", new { id= "DR" }, new { @class="nav-link"} )</li>
+                    <li class="nav-item"> @Html.ActionLink("Supervisors", "Index", "Staff", new { id= "SU" }, new { @class="nav-link"} )</li>
+                </ul>
+            </div>
+        </li>
+        <!--Truck-->
+         <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Truck">
+                <i class="menu-icon mdi mdi-truck"></i>
+                <span class="menu-title">Trucks</span>
+            </a>
+        </li>
+        <!-- Bin-->
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Index" asp-controller="Bins">
+                <i class="menu-icon mdi mdi-delete"></i>
+                <span class="menu-title">Bin</span>
+            </a>
+        </li>
+
+        <!-- Locations-->
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#locations" aria-expanded="false" aria-controls="locations">
+                <i class="menu-icon mdi mdi-barley "></i>
+                <span class="menu-title">Locations</span>
+                <i class="menu-arrow"></i> 
+            </a>
+            <div class="collapse" id="locations">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> @Html.ActionLink("Control Stations", "Index", "Location", new { id= "CS" }, new { @class="nav-link" })</li>
+                    <li class="nav-item"> @Html.ActionLink("Garden Sites", "Index", "Location", new { id= "GS" }, new { @class="nav-link" })</li>
+                    <li class="nav-item"> @Html.ActionLink("Landfills", "Index", "Location", new { id= "LF" }, new { @class="nav-link" })</li>
+                    <li class="nav-item"> @Html.ActionLink("Recycler", "Index", "REcycler",new { id= "LF" }, new { @class="nav-link" })</li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Reports-->
+        <li class="nav-item nav-category">Reports</li>
+         <!-- Waste Collected-->
+        <li class="nav-item">
+            <a class="nav-link" asp-action="WasteCollected" asp-controller="Reports">
+                <i class="menu-icon mdi mdi-checkbox-blank-circle-outline"></i>
+                <span class="menu-title">Waste Collected</span>
+            </a>
+        </li>
+        <!-- Waste Recycled-->
+        <li class="nav-item">
+            <a class="nav-link" asp-action="WasteRecycled" asp-controller="Reports">
+                <i class="menu-icon mdi mdi-checkbox-blank-circle"></i>
+                <span class="menu-title">Waste Recycled</span>
+            </a>
+        </li>
+        <!-- TruckBreakdowns-->
+        <li class="nav-item">
+            <a class="nav-link" asp-action="TruckBreakdown" asp-controller="Reports">
+                <i class="menu-icon mdi mdi-chart-areaspline"></i>
+                <span class="menu-title">Truck Breakdown</span>
+            </a>
+        </li>
+    </ul>
+</nav>

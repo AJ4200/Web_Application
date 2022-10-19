@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EpsilonDemoWebsite.Models.Truck>
+
+@{
+    ViewData["Title"] = "Trucks";
+   Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+            <div class="row">
+                <div class="col-lg-4"><p class="card-title">Trucks</p></div>
+                <div class="col-lg-5"> 
+                    @using(Html.BeginForm("Index", "Truck", FormMethod.Get)) {  
+                        @Html.TextBox("Search") <input type = "submit"  
+                        name = "submit"  
+                        value = "Search" class="btn btn-dark me-2"/> 
+                    }
+                </div>
+                <div class="col-lg-3">
+                    <a href='@Url.Action("addtruck", "Truck")'>
+                        <input type='button' value='Add Truck' class="btn btn-primary me-2">
+                    </a>
+                </div>
+            </div>
+                <div style="height: 300px; overflow: auto;">               
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NumberPlate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Bin)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Driver)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NumberPlate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Bin)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Driver)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id=item.TruckId }) |
+                                        @* @Html.ActionLink("Details", "Details", new { id=item.TruckId }) |*@
+                                        @Html.ActionLink("Delete", "Delete", new { id=item.TruckId })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

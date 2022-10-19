@@ -1,0 +1,83 @@
+﻿@model IEnumerable<EpsilonDemoWebsite.Models.Recycler>
+
+@{
+    ViewData["Title"] = "Recyclers";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+    string type = "Recycler";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+            <div class="row">
+                <div class="col-lg-4"><p class="card-title">Recyclers</p></div>
+                <div class="col-lg-5"> 
+                    @using(Html.BeginForm("Index", "Recycler", FormMethod.Get)) {
+                        @Html.TextBox("Search") <input type = "submit"  
+                        name = "submit"  
+                        value = "Search" class="btn btn-dark me-2"/> 
+                    }
+                </div>
+                <div class="col-lg-3">
+                    <a href='@Url.Action("Add", "Recycler")'>
+                        <input type='button' value='Add Recycler' class="btn btn-primary me-2">
+                    </a>
+                </div>
+            </div>
+                <div class="table-responsive">
+                    <div style="height: 450px; overflow: auto;"> 
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>Industrial Waste</th>
+                                    <th>Cardboard and Paper</th>
+                                    <th>Plastic</th>
+                                    <th>Glass</th>
+                                    <th>Garden Waste</th>
+                                    <th>General Waste</th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IndustrialWaste)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CardboardandPaper)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Plastic)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Glass)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GardenWaste)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.GeneralWaste)
+                                    </td>
+                                    @*<td>
+                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                    </td>*@
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                 </div>
+            </section>
+        </div>
+    </div>
+</div>

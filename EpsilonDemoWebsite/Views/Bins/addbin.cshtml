@@ -1,0 +1,48 @@
+﻿@model EpsilonDemoWebsite.Models.Bin
+
+@{
+    ViewData["Title"] = "Add Bin";
+    Layout = "~/Views/Shared/_ManagementLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <section>
+                <form asp-action="addbin">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="BinId" class="control-label"></label>
+                        <input asp-for="BinId" class="form-control" />
+                        <span asp-validation-for="BinId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Qrcode" class="control-label"></label>
+                        <input asp-for="Qrcode" class="form-control" />
+                        <span asp-validation-for="Qrcode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Waste" class="control-label"></label>
+                        <input asp-for="Waste" class="form-control" />
+                        <span asp-validation-for="Waste" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                     
+                    
+                    <label for="exampleSelectGender">Active</label>
+                        <select  name="Active" >
+                          <option>true</option>
+                          <option>false</option>
+                           
+                        </select>
+                      </div>
+                    <input type="submit" value="Submit" class="btn btn-primary me-2" />
+                    <a href='@Url.Action("Index", "Bins")'>
+                        <input type='button' value='Cancel' class="btn btn-light">
+                    </a>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
